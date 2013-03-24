@@ -139,7 +139,7 @@ typedef enum _JASidePanelState {
 @property (nonatomic, assign) BOOL centerPanelHidden;
 
 // The currently visible panel
-@property (nonatomic, weak, readonly) UIViewController *visiblePanel;
+@property (nonatomic, unsafe_unretained, readonly) UIViewController *visiblePanel;
 
 // If set to yes, "shouldAutorotateToInterfaceOrientation:" will be passed to self.visiblePanel instead of handled directly
 @property (nonatomic, assign) BOOL shouldDelegateAutorotateToVisiblePanel; // defaults to YES
