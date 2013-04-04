@@ -354,16 +354,18 @@ static char ja_kvoContext;
             self.visiblePanel = _centerPanel;
         }
     }
-    if (self.isViewLoaded && self.state == JASidePanelCenterVisible) {
-        [self _swapCenter:previous with:_centerPanel];
-    } else if (self.isViewLoaded) {
+    if (self.isViewLoaded) {
+		NSTimeInterval animationDuration = (self.state == JASidePanelCenterVisible ? 0.4f : 0.2f);
+
         // update the state immediately to prevent user interaction on the side panels while animating
         JASidePanelState previousState = self.state;
         self.state = JASidePanelCenterVisible;
-        [UIView animateWithDuration:0.2f animations:^{
+        [UIView animateWithDuration:animationDuration animations:^{
             if (self.bounceOnCenterPanelChange) {
+				[self _loadLeftPanel];
+
                 // first move the centerPanel offscreen
-                CGFloat x = (previousState == JASidePanelLeftVisible) ? self.view.bounds.size.width : -self.view.bounds.size.width;
+                CGFloat x = (previousState == JASidePanelLeftVisible) ? self.view.bounds.size.width : self.view.bounds.size.width;
                 _centerPanelRestingFrame.origin.x = x;
             }
             self.centerPanelContainer.frame = _centerPanelRestingFrame;
