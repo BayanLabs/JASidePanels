@@ -688,7 +688,7 @@ static char ja_kvoContext;
 
 - (CGFloat)_calculatedDuration {
     CGFloat remaining = fabs(self.centerPanelContainer.frame.origin.x - _centerPanelRestingFrame.origin.x);
-    CGFloat max = _locationBeforePan.x == _centerPanelRestingFrame.origin.x ? remaining : ffabs_locationBeforePan.x - _centerPanelRestingFrame.origin.x);
+    CGFloat max = _locationBeforePan.x == _centerPanelRestingFrame.origin.x ? remaining : fabs(_locationBeforePan.x - _centerPanelRestingFrame.origin.x);
     return max > 0.0f ? self.maximumAnimationDuration * (remaining / max) : self.maximumAnimationDuration;
 }
 
